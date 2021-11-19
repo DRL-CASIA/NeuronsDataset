@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<coef_matrix type_id="opencv-matrix">
+  <rows>1</rows>
+  <cols>5</cols>
+  <dt>d</dt>
+  <data>
+    -0.0721106179904230 0.178067038866243 0.00122551662740768 0.00414688113770697 -0.0844652346664083</data></coef_matrix>
+</opencv_storage>
