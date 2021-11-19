@@ -29,13 +29,14 @@ conda activate YourEnv  # Activate your python environment first.
 cd src
 pip3 setup.py bdist_wheel
 ```
-The commands above are expected generate a .whl file and several folders.
+The commands above are expected to generate a whl file and several folders.
 
-Next, install the .whl package into your python3 environment using pip:
+Next, install the whl package into your python3 environment using pip:
 ```
 cd dist
 pip3 install neuronsdataset-1.0-py3-none-any.whl
 ```
+The generated folders could be safely deleted after installing the API.
 
 ## Usage
 Please refer to [main.py](main.py) for details.
