@@ -24,7 +24,7 @@ class Visualizer():
 
     def visualize(self, idx: int):
         imgs, anno, extrinsics, intrinsics = self.dataset.get_visualize_info(idx)
-        colors = [(255, 255, 0), (136, 11, 235), (90, 200, 2), (255, 255, 0), (126, 56, 190)]
+        colors = [(225, 105, 65), (0, 205, 0), (0, 215, 255), (0, 69, 255), (209, 95, 238)]
         if self.dataset_name == "sentry":
             annopath = anno[idx]
             frame_bev_box, frame_left_box, frame_right_box = self.prepare_bbox(annopath)
@@ -45,8 +45,8 @@ class Visualizer():
                     cv2.putText(left_front_image, str(frame_type[i]), (xmin + 2, ymin - 2), cv2.FONT_HERSHEY_SIMPLEX,
                                 color=(255, 255, 255), fontScale=0.8, thickness=2)
                     cv2.rectangle(left_front_image, (xmin, ymin), (xmax, ymax), color=colors[i], thickness=2)
-                    mask = cv2.fillPoly(left_zeros, np.array([points]), color=colors[i])
-                    left_front_image = 0.2 * mask + left_front_image
+                    # mask = cv2.fillPoly(left_zeros, np.array([points]), color=colors[i])
+                    # left_front_image = 0.2 * mask + left_front_image
 
                 ymin, xmin, ymax, xmax = frame_right_box[i]
                 points = [[xmin, ymin], [xmin, ymax], [xmax, ymax], [xmax, ymin]]
@@ -55,8 +55,8 @@ class Visualizer():
                     cv2.putText(right_front_image, str(frame_type[i]), (xmin + 2, ymin - 2), cv2.FONT_HERSHEY_SIMPLEX,
                                 color=(255, 255, 255), fontScale=0.8, thickness=2)
                     cv2.rectangle(right_front_image, (xmin, ymin), (xmax, ymax), color=colors[i], thickness=2)
-                    mask = cv2.fillPoly(right_zeros, np.array([points]), color=colors[i])
-                    right_front_image = 0.2 * mask + right_front_image
+                    # mask = cv2.fillPoly(right_zeros, np.array([points]), color=colors[i])
+                    # right_front_image = 0.2 * mask + right_front_image
 
             left_image = cv2.imread(imgs[0][idx])
             right_image = cv2.imread(imgs[1][idx])
@@ -193,13 +193,14 @@ class Visualizer():
             for plt_index in range(1, 5):
                 plt.subplot(2, 2, plt_index)
                 if plt_index == 1:
-                    plt.imshow(left_front_image.astype(np.uint8))
+                    # plt.imshow(left_front_image.astype(np.uint8))
+                    plt.imshow(cv2.cvtColor(left_front_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
                 elif plt_index == 2:
-                    plt.imshow(right_front_image.astype(np.uint8))
+                    plt.imshow(cv2.cvtColor(right_front_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
                 elif plt_index == 3:
-                    plt.imshow(left_image.astype(np.uint8))
+                    plt.imshow(cv2.cvtColor(left_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
                 elif plt_index == 4:
-                    plt.imshow(right_image.astype(np.uint8))
+                    plt.imshow(cv2.cvtColor(right_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
 
             plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
             plt.margins(0, 0)
